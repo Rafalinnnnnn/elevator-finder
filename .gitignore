@@ -1,0 +1,12 @@
+# Entorno virtual
+venv/
+__pycache__/
+*.pyc
+
+# Archivos de IDEs
+.vscode/
+.idea/
+
+# Datos locales
+*.db
+*.sqlite

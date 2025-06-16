@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pandas
+requests
+beautifulsoup4
+python-dotenv
+
+jinja2
+python-multipart
+deep-translator
+pip freeze > requirements.txt

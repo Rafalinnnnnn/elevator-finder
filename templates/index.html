@@ -1,0 +1,119 @@
+<<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Elevator Distributor Finder</title>
+</head>
+<body>
+  <h1>Distribuidores de ascensores en {{ area }}</h1>
+
+  <form action="/results" method="get">
+    <input type="text" name="area" placeholder="Ciudad, región o país" value="{{ area }}" required>
+    <select name="brand">
+      <option value="">-- Todas las marcas --</option>
+      {% for b in all_brands %}
+        <option value="{{ b }}" {% if b == selected_brand %}selected{% endif %}>{{ b }}</option>
+      {% endfor %}
+    </select>
+    <select name="company_type">
+      <option value="">-- Todos los tipos --</option>
+      {% for t in all_types %}
+        <option value="{{ t }}" {% if t == selected_type %}selected{% endif %}>{{ t }}</option>
+      {% endfor %}
+    </select>
+    <select name="certification">
+      <option value="">-- Todas las certificaciones --</option>
+      {% for c in all_certs %}
+        <option value="{{ c }}" {% if c == selected_cert %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Buscar</button>
+  </form>
+
+  <p><a href="/export?area={{ area }}
+    {% if selected_brand %}&brand={{ selected_brand }}{% endif %}
+    {% if selected_type %}&company_type={{ selected_type }}{% endif %}
+    {% if selected_cert %}&certification={{ selected_cert }}{% endif %}">
+    📥 Descargar Excel
+  </a></p>
+
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Empresa</th><th>Dirección</th><th>Teléfono</th><th>Marcas</th><th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in results %}
+      <tr>
+        <td>{{ p.company }}</td>
+        <td>{{ p.address }}</td>
+        <td>{{ p.phone or '—' }}</td>
+        <td>{{ p.brands|join(', ') }}</td>
+        <td>{{ p.company_type }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Elevator Distributor Finder</title>
+</head>
+<body>
+  <h1>Distribuidores de ascensores en {{ area }}</h1>
+
+  <form action="/results" method="get">
+    <input type="text" name="area" placeholder="Ciudad, región o país" value="{{ area }}" required>
+    <select name="brand">
+      <option value="">-- Todas las marcas --</option>
+      {% for b in all_brands %}
+        <option value="{{ b }}" {% if b == selected_brand %}selected{% endif %}>{{ b }}</option>
+      {% endfor %}
+    </select>
+    <select name="company_type">
+      <option value="">-- Todos los tipos --</option>
+      {% for t in all_types %}
+        <option value="{{ t }}" {% if t == selected_type %}selected{% endif %}>{{ t }}</option>
+      {% endfor %}
+    </select>
+    <select name="certification">
+      <option value="">-- Todas las certificaciones --</option>
+      {% for c in all_certs %}
+        <option value="{{ c }}" {% if c == selected_cert %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Buscar</button>
+  </form>
+
+  <p><a href="/export?area={{ area }}
+    {% if selected_brand %}&brand={{ selected_brand }}{% endif %}
+    {% if selected_type %}&company_type={{ selected_type }}{% endif %}
+    {% if selected_cert %}&certification={{ selected_cert }}{% endif %}">
+    📥 Descargar Excel
+  </a></p>
+
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Empresa</th><th>Dirección</th><th>Teléfono</th><th>Marcas</th><th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in results %}
+      <tr>
+        <td>{{ p.company }}</td>
+        <td>{{ p.address }}</td>
+        <td>{{ p.phone or '—' }}</td>
+        <td>{{ p.brands|join(', ') }}</td>
+        <td>{{ p.company_type }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
+
